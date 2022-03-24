@@ -26,6 +26,9 @@ public interface UserDao {
     void insertAll(User... users);
 
     @Insert
+    void inserAll(List<User> users);
+
+    @Insert
     void insertTargetUsers(User user1, User user2);
 
     @Insert

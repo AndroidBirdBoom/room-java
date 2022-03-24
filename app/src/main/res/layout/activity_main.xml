@@ -27,9 +27,15 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/btn_vm"
+        android:text="ViewModel"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/btn_add"
         android:text="提交"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toTopOf="@id/btn_vm"/>
 
     <EditText
         android:layout_width="match_parent"
