@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bcqs.jetpack_room_java.activity.NavigationActivity;
 import com.bcqs.jetpack_room_java.activity.ViewModelActivity;
 import com.bcqs.jetpack_room_java.dao.UserDao;
 import com.bcqs.jetpack_room_java.data.User;
@@ -49,6 +50,11 @@ public class MainActivity extends AppCompatActivity {
 /*        //lifecycle
         lifecyceListener = new LifecyceListener();
         getLifecycle().addObserver(lifecyceListener);*/
+
+        activityMainBinding.btnLifecycle.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, NavigationActivity.class);
+            startActivity(intent);
+        });
 
     }
 
