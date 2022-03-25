@@ -3,6 +3,8 @@ package com.bcqs.jetpack_room_java.viewmodel;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class CountViewModel extends ViewModel {
@@ -10,32 +12,32 @@ public class CountViewModel extends ViewModel {
     private Timer mTimer;
     private int currentCount;
 
-    private OnTimerChangedListener onTimerChangedListener;
+    private MutableLiveData<Integer> currentData = new MutableLiveData<>();
 
 
-    public int getCurrentCount(){
-        return currentCount;
+    public LiveData<Integer> getCurrentCount() {
+        return currentData;
     }
 
-    public void setCurrentCount(int current){
+    public void setCurrentCount(int current) {
         currentCount = current;
+        currentData.postValue(currentCount);
     }
 
     public void startTiming() {
         if (mTimer == null) {
             mTimer = new Timer();
             currentCount = 0;
-            mTimer.schedule(timerTask, 1000,1000);
+            currentData.setValue(currentCount);
+            mTimer.schedule(timerTask, 1000, 1000);
         }
     }
 
     TimerTask timerTask = new TimerTask() {
         @Override
         public void run() {
-            currentCount++;
-            if (onTimerChangedListener != null) {
-                onTimerChangedListener.onChanged(currentCount);
-            }
+            currentCount +=1;
+            currentData.postValue(currentCount);
         }
     };
 
@@ -43,14 +45,5 @@ public class CountViewModel extends ViewModel {
     protected void onCleared() {
         super.onCleared();
         mTimer.cancel();
-    }
-
-
-    public void setOnTimerChangedListener(OnTimerChangedListener onTimerChangedListener) {
-        this.onTimerChangedListener = onTimerChangedListener;
-    }
-
-    public interface OnTimerChangedListener {
-        void onChanged(int count);
     }
 }

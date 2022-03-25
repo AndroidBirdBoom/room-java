@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 public class TopFragment extends Fragment {
@@ -33,10 +34,14 @@ public class TopFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         countViewModel = new ViewModelProvider(requireActivity(),new CountVmFactory()).get(CountViewModel.class);
-        fragmentTopBinding.setTopCount(countViewModel.getCurrentCount());
         fragmentTopBinding.btnSend1.setOnClickListener(view1 -> {
-            fragmentTopBinding.setTopCount(countViewModel.getCurrentCount());
             countViewModel.setCurrentCount(Integer.valueOf(fragmentTopBinding.etCount1.getText().toString()));
+        });
+        countViewModel.getCurrentCount().observe(requireActivity(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                fragmentTopBinding.setTopCount(integer);
+            }
         });
     }
 }

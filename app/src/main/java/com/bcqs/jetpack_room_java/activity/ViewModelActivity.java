@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 public class ViewModelActivity extends AppCompatActivity {
@@ -29,13 +30,11 @@ public class ViewModelActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         activityViewmodelBinding = DataBindingUtil.setContentView(this, R.layout.activity_viewmodel);
         countViewModel = new ViewModelProvider(this,new CountVmFactory()).get(CountViewModel.class);
-        countViewModel.setOnTimerChangedListener(count -> {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    activityViewmodelBinding.setCount(count);
-                }
-            });
+        countViewModel.getCurrentCount().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                activityViewmodelBinding.setCount(integer);
+            }
         });
         countViewModel.startTiming();
         activityViewmodelBinding.tvStart.setOnClickListener(view -> {

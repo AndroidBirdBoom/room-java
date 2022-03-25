@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 public class BottomFragment extends Fragment {
@@ -32,10 +33,14 @@ public class BottomFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         countViewModel = new ViewModelProvider(requireActivity(),new CountVmFactory()).get(CountViewModel.class);
-        fragmentBottomBinding.setBottomCount(countViewModel.getCurrentCount());
         fragmentBottomBinding.btnSend2.setOnClickListener(view1 -> {
-            fragmentBottomBinding.setBottomCount(countViewModel.getCurrentCount());
             countViewModel.setCurrentCount(Integer.valueOf(fragmentBottomBinding.etCount2.getText().toString()));
+        });
+        countViewModel.getCurrentCount().observe(requireActivity(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                fragmentBottomBinding.setBottomCount(integer);
+            }
         });
     }
 }
