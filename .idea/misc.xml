@@ -3,7 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/programs/jetpackroomjava/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/programs/jetpackroomjava/app/src/main/res/layout/activity_lifecycle.xml" value="0.12001811594202899" />
+        <entry key="..\:/programs/jetpackroomjava/app/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
         <entry key="..\:/programs/jetpackroomjava/app/src/main/res/layout/activity_viewmodel.xml" value="0.12545289855072464" />
         <entry key="..\:/programs/jetpackroomjava/app/src/main/res/layout/fragment_bottom.xml" value="0.12545289855072464" />
         <entry key="..\:/programs/jetpackroomjava/app/src/main/res/layout/fragment_top.xml" value="0.12545289855072464" />

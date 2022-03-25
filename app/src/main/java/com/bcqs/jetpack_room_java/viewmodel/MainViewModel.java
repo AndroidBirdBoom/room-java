@@ -2,7 +2,7 @@ package com.bcqs.jetpack_room_java.viewmodel;
 
 import android.app.Application;
 
-import com.bcqs.jetpack_room_java.AppDataBase;
+import com.bcqs.jetpack_room_java.db.AppDataBase;
 import com.bcqs.jetpack_room_java.data.User;
 
 import java.util.List;

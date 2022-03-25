@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.bcqs.jetpack_room_java.R;
 import com.bcqs.jetpack_room_java.databinding.FragmentTopBinding;
 import com.bcqs.jetpack_room_java.factory.CountVmFactory;
+import com.bcqs.jetpack_room_java.observer.LifecyceListener;
 import com.bcqs.jetpack_room_java.viewmodel.CountViewModel;
 
 import androidx.annotation.NonNull;
@@ -43,5 +44,7 @@ public class TopFragment extends Fragment {
                 fragmentTopBinding.setTopCount(integer);
             }
         });
+
+        getLifecycle().addObserver(new LifecyceListener());
     }
 }

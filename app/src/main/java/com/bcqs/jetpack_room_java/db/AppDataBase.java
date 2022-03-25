@@ -1,4 +1,4 @@
-package com.bcqs.jetpack_room_java;
+package com.bcqs.jetpack_room_java.db;
 
 import com.bcqs.jetpack_room_java.dao.UserDao;
 import com.bcqs.jetpack_room_java.data.User;
